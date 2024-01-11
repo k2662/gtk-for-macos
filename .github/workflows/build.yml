@@ -1,1 +1,17 @@
+name: build gtk for macos 
 
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  build:
+    name: Build stage 1
+    runs-on: macos-11
+
+    steps:
+      - uses: actions/checkout@v4
+        name: Clone repository
+      - name: Build
+        run: curl https://gitlab.gnome.org/GNOME/gtk-osx/raw/master/gtk-osx-setup.sh | sh && export PATH="$HOME/.new_local/bin"
